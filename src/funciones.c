@@ -1,3 +1,11 @@
+/*
+ * funciones.c
+ *
+ *  Created on: Apr 15, 2021
+ *      Author: sofia
+ */
+
+
 
 #include <stddef.h>
 #include <stdio.h>
@@ -38,13 +46,7 @@ int menuPrincipal(int flagUno, int flagDos, int primerOperando, int segundoOpera
     return 0;
 }
 
-/** \brief suma de dos operandos
- *
- * \param numero1 int  primer operando
- * \param numero2 int  segundo operando
- * \return int        resultado de la operacion
- *
- */
+
 int suma(int numero1, int numero2)
 {
     int resultado;
@@ -52,13 +54,7 @@ int suma(int numero1, int numero2)
     return resultado;
 }
 
-/** \brief resta de dos operandos. Al primer operando se le sustrae el segundo
- *
- * \param numero1 int   primer operando
- * \param numero2 int   segundo operando
- * \return int          resultado de la operacion
- *
- */
+
 int resta(int numero1,int numero2)
 {
     int resultado;
@@ -66,14 +62,8 @@ int resta(int numero1,int numero2)
     return resultado;
 }
 
-/** \brief realiza la division de dos operandos y Devuelve 0 si no es posible realizar la division y 1 si es posible.
- *
- * \param numero1 int    primer operando
- * \param numero2 int    segundo operando
- * \param resultado float*   puntero del resultado de la operacion
- * \return int        retorna 0 si la division no se puede realizar porque el puntero es null o el segundo operando es 0 y retorna 1 si la division se puede realizar
- *
- */
+
+
 int division(int numero1, int numero2, float* resultado)
 {
     int todoOk = 0;
@@ -87,16 +77,37 @@ int division(int numero1, int numero2, float* resultado)
     return todoOk;
 }
 
-/** \brief multiplicacion de dos operandos
- *
- * \param numero1 int    primer operando
- * \param numero2 int    segundo operando
- * \return int            resultado de la operacion
- *
- */
+
 int multiplicacion(int numero1, int numero2)
 {
     int resultado;
     resultado = numero1 * numero2;
     return resultado;
+}
+
+
+int factorial(int numero, int* resultadoFactorial)
+{
+    int todoOk = 0;
+    int fact = 1;
+
+    if(numero>=0 && numero <=10 && resultadoFactorial!=NULL)
+    {
+
+        for(int i=1; i<= numero; i++)
+        {
+            fact *= i;
+            *resultadoFactorial = fact;
+        }
+
+        todoOk=1;
+
+    }
+
+    if(numero>10)
+    {
+        todoOk=-1;
+    }
+
+    return todoOk;
 }
