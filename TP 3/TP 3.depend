@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1624233770 source:c:\users\sofia\onedrive\desktop\utn\laboratorio 1 - programacion 1\tp_laboratorio1\tp 3\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"utn.h"
+
+1565993298 c:\users\sofia\onedrive\desktop\utn\laboratorio 1 - programacion 1\tp_laboratorio1\tp 3\linkedlist.h
+
+1624232565 c:\users\sofia\onedrive\desktop\utn\laboratorio 1 - programacion 1\tp_laboratorio1\tp 3\employee.h
+	"LinkedList.h"
+
+1624286768 c:\users\sofia\onedrive\desktop\utn\laboratorio 1 - programacion 1\tp_laboratorio1\tp 3\parser.h
+
+1624056265 c:\users\sofia\onedrive\desktop\utn\laboratorio 1 - programacion 1\tp_laboratorio1\tp 3\utn.h
+
+1624145792 source:c:\users\sofia\onedrive\desktop\utn\laboratorio 1 - programacion 1\tp_laboratorio1\tp 3\employee.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Employee.h"
+	"LinkedList.h"
+	"utn.h"
+
+1624233359 source:c:\users\sofia\onedrive\desktop\utn\laboratorio 1 - programacion 1\tp_laboratorio1\tp 3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"utn.h"
+
+1624232887 c:\users\sofia\onedrive\desktop\utn\laboratorio 1 - programacion 1\tp_laboratorio1\tp 3\controller.h
+
+1624286774 source:c:\users\sofia\onedrive\desktop\utn\laboratorio 1 - programacion 1\tp_laboratorio1\tp 3\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1624056252 source:c:\users\sofia\onedrive\desktop\utn\laboratorio 1 - programacion 1\tp_laboratorio1\tp 3\utn.c
+	"utn.h"
+	<stddef.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
