@@ -20,8 +20,8 @@ int alumno_setEdad(eAlumno* this,int edad);
 int alumno_getEdad(eAlumno* this,int* edad);
 
 
-//int cargarDesdeTexto(char* path, LinkedList* pLista);
-//eAlumno* alumno_newParametros(char* idStr,char* nombreStr,char* gradoStr, char* edadStr);
+int cargarDesdeTexto(char* path, LinkedList* pLista);
+eAlumno* newAlumnoParam(char* strId, char* strNombre, char* strGrado, char* strEdad);
 int mostrarAlumno(eAlumno* a);
 int listarAlumnos(LinkedList* lista);
 int alumno_CompareNombre(void* a, void* b);
@@ -30,31 +30,13 @@ int alumno_CompareNombre(void* a, void* b);
 int main()
 {
     int len;
-    //char path[20]= "datos.csv";
+    char path[20]= "datos.csv";
 
     ///instancio un LinkedList utilizando ll_newLinkedList
     LinkedList* lista = ll_newLinkedList();
 
-    ///agrego alumnos a la lista con ll_add
-    eAlumno a1 = {1, "Lily", 5, 10};
-    ll_add(lista, &a1);
-
-    eAlumno a2 = {2, "Carlitos", 2, 6};
-    ll_add(lista, &a2);
-
-    eAlumno a3 = {3, "Tommy", 4, 8};
-    ll_add(lista, &a3);
-
-    eAlumno a4 = {4, "Angelica", 7, 12};
-    ll_add(lista, &a4);
-
-    eAlumno a5 = {5, "Phili", 5, 10};
-    ll_add(lista, &a5);
-
-    eAlumno a6 = {6, "Pi", 5, 9};
-    ll_add(lista, &a6);
-
-    ///muestro la cantidad de elementos en el LL////////////////////////////////////////////////////////
+    ///cargo los alumnos desde un archivo csv
+    cargarDesdeTexto(path, lista);//esta funcion utiliza ll_add
     len=ll_len(lista);
     printf("Cantidad de elementos en la lista: %d\n", len);
 
@@ -63,11 +45,32 @@ int main()
     printf("Lista inicial\n");
     listarAlumnos(lista);
 
+    ///agrego mas alumnos a la lista con ll_add
+    eAlumno a1 = {21, "Lily", 5, 10};
+    ll_add(lista, &a1);
+
+    eAlumno a2 = {22, "Helga", 2, 6};
+    ll_add(lista, &a2);
+
+    eAlumno a3 = {23, "DJ", 4, 8};
+    ll_add(lista, &a3);
+
+    eAlumno a4 = {24, "Angelica", 7, 12};
+    ll_add(lista, &a4);
+
+    eAlumno a5 = {25, "Phili", 5, 10};
+    ll_add(lista, &a5);
+
+    eAlumno a6 = {26, "Pi", 5, 9};
+    ll_add(lista, &a6);
+
+    printf("Lista con elementos agregados.\n");
+    listarAlumnos(lista);
+
     printf("\n\n");
     ///clono la lista original con ll_clone/////////////////////////////////////////////////////////////
 
     LinkedList* lista2 = NULL;
-
     lista2 = ll_clone(lista);
     printf("Lista clonada\n");
     listarAlumnos(lista2);
@@ -75,7 +78,7 @@ int main()
     printf("\n\n");
     ///creo un nuevo alumno y lo agrego en la lista con ll_push////////////////////////////////////////////
 
-    eAlumno a7 = {7, "Riley", 1, 5};
+    eAlumno a7 = {27, "Riley", 1, 5};
     ll_push(lista, 4, &a7);
     printf("Lista despues de un push\n");
     listarAlumnos(lista);
@@ -186,6 +189,10 @@ int main()
     {
         printf("lista eliminada\n");
     }
+
+
+
+
 
     return 0;
 }
@@ -349,4 +356,50 @@ int alumno_CompareNombre(void* a, void* b)
 
     return retorno;
 
+}
+
+eAlumno* newAlumnoParam(char* strId, char* strNombre, char* strGrado, char* strEdad)
+{
+    eAlumno* newAlumno = (eAlumno*) malloc(sizeof(eAlumno));
+    if(newAlumno!=NULL)
+    {
+
+        if(!(alumno_setId(newAlumno, atoi(strId))&& ///si no devuelven true se libera el espacio y devuelve null
+           alumno_setNombre(newAlumno, strNombre) &&
+           alumno_setGrado(newAlumno, atoi(strGrado)) &&
+           alumno_setEdad(newAlumno, atoi(strEdad))))
+        {
+            free(newAlumno);
+            newAlumno=NULL;
+        }
+    }
+    return newAlumno;
+}
+
+int cargarDesdeTexto(char* path, LinkedList* pLista)
+{
+    int ok=0;
+    char buffer[20][100];
+    eAlumno* aux;
+
+    FILE* f = fopen(path, "r");
+    if(f==NULL)
+    {
+        printf("No se puede abrir el archivo");
+        exit(1);
+    }
+
+    fscanf(f, "%[^,], %[^,], %[^,],%[^\n]\n", buffer[0], buffer[1], buffer[2], buffer[3]);//lectura fantasma del encabezado
+
+    do{
+        fscanf(f, "%[^,], %[^,], %[^,],%[^\n]\n", buffer[0], buffer[1], buffer[2], buffer[3]);
+
+
+        aux=newAlumnoParam(buffer[0], buffer[1], buffer[2], buffer[3]);
+        ll_add(pLista, aux);
+        ok=1;
+
+    }while(!feof(f));
+
+    return ok;
 }
